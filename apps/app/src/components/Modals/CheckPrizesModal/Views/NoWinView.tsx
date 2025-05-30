@@ -1,12 +1,14 @@
 import { Button } from '@shared/ui'
 import classNames from 'classnames'
-import Lottie from 'lottie-react'
 import { useTranslations } from 'next-intl'
+import dynamic from 'next/dynamic'
 import { noWinAnimation } from '../animations'
 
 interface NoWinViewProps {
   onGoToAccount: () => void
 }
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 
 export const NoWinView = (props: NoWinViewProps) => {
   const { onGoToAccount } = props

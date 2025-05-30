@@ -9,8 +9,8 @@ import { DrawWithTimestamps, SubgraphPrize, TokenWithAmount } from '@shared/type
 import { Button } from '@shared/ui'
 import { getSimpleDate, NATIVE_ASSETS, NETWORK } from '@shared/utilities'
 import classNames from 'classnames'
-import Lottie from 'lottie-react'
 import { useTranslations } from 'next-intl'
+import dynamic from 'next/dynamic'
 import { useMemo, useState } from 'react'
 import { Address, formatUnits, parseEther } from 'viem'
 import { useAccount } from 'wagmi'
@@ -22,6 +22,8 @@ interface WinViewProps {
   wins: { [chainId: number]: SubgraphPrize[] }
   onGoToAccount: () => void
 }
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 
 export const WinView = (props: WinViewProps) => {
   const { prizePools, draws, wins, onGoToAccount } = props
